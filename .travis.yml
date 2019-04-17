@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run cizuss/aws-playground npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "aws-playground"
+  env: "AwsPlayground-env"
+  bucket_name: "elasticbeanstalk-us-east-2-668099751442"
+  bucker_path: "aws-playground"
+  on:
+    branch: master
+  access_key_id: $ACCESS_KEY
+  secret_access_key:
+    secure: "$SECRET_ACCESS_KEY"
